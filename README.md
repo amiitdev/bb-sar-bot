@@ -294,6 +294,50 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
+## 📖 Documentation
+
+- [API Documentation](API.md) — REST API endpoints
+- [LICENSE](LICENSE) — MIT License
+
+---
+
+## 🔍 Troubleshooting
+
+### Bot not starting?
+
+```bash
+# Check if port is in use
+lsof -i :8001
+
+# Kill existing process
+pkill -9 -f "uvicorn api:app"
+
+# Start again
+python3 -m uvicorn api:app --host 0.0.0.0 --port 8001
+```
+
+### No signals appearing?
+
+1. Check if market is open (9:15 AM - 3:30 PM IST)
+2. Verify slope > 6.0 and bandwidth > 0.20%
+3. Check logs: `tail -f logs/bot.log`
+
+### Telegram not working?
+
+```bash
+# Test connection
+python3 -c "from telegram_notifier import test_connection; test_connection()"
+```
+
+### Yahoo Finance not working?
+
+```bash
+# Test data fetch
+python3 -c "from fetcher import fetch_live_yahoo; print(fetch_live_yahoo().tail())"
+```
+
+---
+
 ## 📞 Support
 
 - **GitHub Issues:** [Report a bug](https://github.com/amiitdev/bb-sar-bot/issues)
